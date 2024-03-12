@@ -1,0 +1,23 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"plugins": ["@typescript-eslint"],
+	"extends": ["airbnb", "airbnb-typescript", "prettier"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2019,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ellowJs": true,
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"no-console": "error",
+		"import/prefer-default-export": "off",
+		"strict": ["error", "never"]
+	}
+}

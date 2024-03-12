@@ -1,0 +1,12 @@
+{
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"prettier.requireConfig": true,
+	"jest.jestCommandLine": "./node_modules/.bin/jest",
+	"prettier.prettierPath": "./node_modules/prettier/index.cjs",
+	"editor.rulers": [100],
+	"prettier.printWidth": 100,
+	"eslint.validate": ["typescript"]
+}
