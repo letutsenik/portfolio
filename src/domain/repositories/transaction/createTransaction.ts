@@ -1,6 +1,8 @@
 import crypto from 'node:crypto';
 import { Transaction } from '../../entities/Transaction';
 import { readTransactionsFromFile, writeTransactionsToFile } from './_utils';
+import { RepositoryError } from '../types';
+import { getErrorMessage } from '../../utils';
 
 type CreateTransactionOptions = {
 	type: Transaction['type'];
@@ -19,7 +21,7 @@ export const createTransaction = async ({
 	coinId,
 	assetId,
 	portfolioId,
-}: CreateTransactionOptions): Promise<Transaction> => {
+}: CreateTransactionOptions): Promise<Transaction | RepositoryError> => {
 	const id = crypto.randomUUID();
 	const timestamp = new Date().toISOString();
 
@@ -34,9 +36,15 @@ export const createTransaction = async ({
 		portfolioId,
 	};
 
-	const existingTransactions = await readTransactionsFromFile();
-	const updatedTransactions = [...existingTransactions, transaction];
-	await writeTransactionsToFile(updatedTransactions);
+	try {
+		const existingTransactions = await readTransactionsFromFile();
+		const updatedTransactions = [...existingTransactions, transaction];
+		await writeTransactionsToFile(updatedTransactions);
 
-	return transaction;
+		return transaction;
+	} catch (err: unknown) {
+		return {
+			message: getErrorMessage(err),
+		};
+	}
 };
