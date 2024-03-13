@@ -1,16 +1,18 @@
 {
 	"ts-node": {
-		"files": true
+		"files": true,
+		"compilerOptions": {
+			"module": "commonjs"
+		}
 	},
-	"files": ["src/index.ts", "src/global.d.ts"],
 	"compilerOptions": {
-		"module": "commonjs",
-		"lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+		"module": "ES2022",
+		"target": "ES2022",
+		"lib": ["ES2022"],
 		"types": ["node"],
 		"skipLibCheck": true,
 		"removeComments": true,
 		"esModuleInterop": true,
-		"target": "es6",
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"outDir": "dist",
@@ -28,6 +30,6 @@
 		"experimentalDecorators": true,
 		"resolveJsonModule": true
 	},
-	"exclude": ["../node_modules"],
-	"lib": ["es2015"]
+	"exclude": ["node_modules", "src/**/*.test.ts"],
+	"include": ["src/**/*.ts"]
 }
