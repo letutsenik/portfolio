@@ -1,0 +1,27 @@
+{
+	"version": "5",
+	"dialect": "pg",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "5",
+			"when": 1712562902109,
+			"tag": "0000_bitter_banshee",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "5",
+			"when": 1712563825822,
+			"tag": "0001_mean_gateway",
+			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "5",
+			"when": 1712563947574,
+			"tag": "0002_ancient_marvel_zombies",
+			"breakpoints": true
+		}
+	]
+}
