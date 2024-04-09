@@ -1,18 +1,23 @@
-import {
-	createTransaction,
-	// deleteTransaction,
-} from './domain/repositories/transaction';
+import { createUser } from './domain/repositories/user';
+import { getAllUsers } from './domain/repositories/user/getAllUsers';
 
 // eslint-disable-next-line no-console
 console.log('Hello portfolio API');
-createTransaction({
-	type: 'BUY',
-	quantity: 10,
-	pricePerCoin: 52,
-	timestamp: new Date(),
-	coinId: '111',
-	assetId: '111-asset',
-	portfolioId: '111-portfolio',
-});
 
-// deleteTransaction('59da2abe-ee7e-4275-ad2b-b0a6b9a6881d');
+const main = async () => {
+	const newUser = {
+		firstName: 'Bob',
+		lastName: 'Sub',
+		fullName: 'Bob Sub',
+		phone: '+1 025 0236 666',
+	};
+	await createUser(newUser);
+	const users = await getAllUsers();
+	// eslint-disable-next-line no-console
+	console.log('users: ', users);
+};
+
+// eslint-disable-next-line no-console
+console.log('users: ', getAllUsers());
+
+main();
