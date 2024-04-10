@@ -1,7 +1,8 @@
-import { db } from '../../../interfaces/database/db';
-import * as schema from '../../../interfaces/database/schema';
+import { db } from '@database/db';
+import * as schema from '@database/schema';
+import { UserDb } from '@database/types';
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (): Promise<UserDb[]> => {
 	const users = await db.select().from(schema.users);
 
 	return users;

@@ -1,23 +1,35 @@
-import { createUser } from './domain/repositories/user';
-import { getAllUsers } from './domain/repositories/user/getAllUsers';
+import { UserRepository } from './domain/repositories';
 
 // eslint-disable-next-line no-console
 console.log('Hello portfolio API');
 
 const main = async () => {
-	const newUser = {
-		firstName: 'Bob',
-		lastName: 'Sub',
-		fullName: 'Bob Sub',
-		phone: '+1 025 0236 666',
+	// const userInput = {
+	// 	firstName: 'Roman',
+	// 	lastName: 'Rekun',
+	// 	fullName: 'Roman Rekun',
+	// 	phone: '+1 025 0236 777',
+	// 	email: 'email@example.com',
+	// };
+	// const newUser = await UserRepository.createUser(userInput);
+
+	// // eslint-disable-next-line no-console
+	// console.log('newUser: ', newUser);
+
+	const updateUserInput = {
+		phone: '+1 025 0236 888',
 	};
-	await createUser(newUser);
-	const users = await getAllUsers();
+
+	const updateResponse = await UserRepository.updateUser(
+		'email@example.com',
+		updateUserInput,
+	);
+	// eslint-disable-next-line no-console
+	console.log('updateResponse: ', updateResponse);
+
+	const users = await UserRepository.getAllUsers();
 	// eslint-disable-next-line no-console
 	console.log('users: ', users);
 };
-
-// eslint-disable-next-line no-console
-console.log('users: ', getAllUsers());
 
 main();

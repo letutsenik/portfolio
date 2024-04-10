@@ -1,8 +1,8 @@
-import { db } from '../../../interfaces/database/db';
-import * as schema from '../../../interfaces/database/schema';
-import { UserDb } from '../../../interfaces/database/types';
+import { db } from '@database/db';
+import * as schema from '@database/schema';
+import { UserDb } from '@database/types';
 
-export const createUser = async (user: UserDb) => {
+export const createUser = async (user: UserDb): Promise<UserDb> => {
 	const response = await db.insert(schema.users).values(user).returning();
 
 	return response[0];
