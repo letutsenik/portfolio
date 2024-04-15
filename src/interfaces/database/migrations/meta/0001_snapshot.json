@@ -1,21 +1,73 @@
 {
-	"id": "9cf425a6-ba17-48fb-bf07-babce4adf947",
-	"prevId": "72f082ed-1028-4930-92d5-64b614a657d9",
+	"id": "8887cc35-7a8e-4083-9b75-4ce495429b6d",
+	"prevId": "5db36bac-535d-4dca-a5b1-697b3227eafd",
 	"version": "5",
 	"dialect": "pg",
 	"tables": {
+		"portfolios": {
+			"name": "portfolios",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"user_id": {
+					"name": "user_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"portfolios_user_id_users_id_fk": {
+					"name": "portfolios_user_id_users_id_fk",
+					"tableFrom": "portfolios",
+					"tableTo": "users",
+					"columnsFrom": ["user_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
 		"users": {
 			"name": "users",
 			"schema": "",
 			"columns": {
 				"id": {
 					"name": "id",
-					"type": "serial",
+					"type": "uuid",
 					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar(256)",
+					"primaryKey": false,
 					"notNull": true
 				},
 				"first_name": {
 					"name": "first_name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"last_name": {
+					"name": "last_name",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": false
@@ -36,7 +88,13 @@
 			"indexes": {},
 			"foreignKeys": {},
 			"compositePrimaryKeys": {},
-			"uniqueConstraints": {}
+			"uniqueConstraints": {
+				"users_email_unique": {
+					"name": "users_email_unique",
+					"nullsNotDistinct": false,
+					"columns": ["email"]
+				}
+			}
 		}
 	},
 	"enums": {},

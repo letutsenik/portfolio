@@ -1,33 +1,108 @@
 {
-	"id": "769564ef-06df-4c89-8d31-ba72782ec0b0",
-	"prevId": "9cf425a6-ba17-48fb-bf07-babce4adf947",
+	"id": "8c930f5e-ec3f-45c4-ae5a-3af1f44d09fd",
+	"prevId": "8887cc35-7a8e-4083-9b75-4ce495429b6d",
 	"version": "5",
 	"dialect": "pg",
 	"tables": {
+		"assets": {
+			"name": "assets",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar(8)",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"portfolios": {
+			"name": "portfolios",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"user_id": {
+					"name": "user_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"portfolios_user_id_users_id_fk": {
+					"name": "portfolios_user_id_users_id_fk",
+					"tableFrom": "portfolios",
+					"tableTo": "users",
+					"columnsFrom": ["user_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
 		"users": {
 			"name": "users",
 			"schema": "",
 			"columns": {
 				"id": {
 					"name": "id",
-					"type": "serial",
+					"type": "uuid",
 					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar(256)",
+					"primaryKey": false,
 					"notNull": true
 				},
 				"first_name": {
 					"name": "first_name",
 					"type": "text",
 					"primaryKey": false,
-					"notNull": false
+					"notNull": true
 				},
-				"full_name": {
-					"name": "full_name",
+				"last_name": {
+					"name": "last_name",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": false
 				},
-				"last_name": {
-					"name": "last_name",
+				"full_name": {
+					"name": "full_name",
 					"type": "text",
 					"primaryKey": false,
 					"notNull": false
@@ -42,7 +117,13 @@
 			"indexes": {},
 			"foreignKeys": {},
 			"compositePrimaryKeys": {},
-			"uniqueConstraints": {}
+			"uniqueConstraints": {
+				"users_email_unique": {
+					"name": "users_email_unique",
+					"nullsNotDistinct": false,
+					"columns": ["email"]
+				}
+			}
 		}
 	},
 	"enums": {},
