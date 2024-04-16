@@ -1,27 +1,14 @@
-import { readTransactionsFromFile, writeTransactionsToFile } from './_utils';
-import { getErrorMessage } from '../../utils';
-import { RepositoryError } from '../types';
+import { db } from '@database/db';
+import * as schema from '@database/schema';
+import { eq } from 'drizzle-orm';
 
 export const deleteTransaction = async (
 	transactionId: string,
-): Promise<boolean | RepositoryError> => {
-	try {
-		const existingTransactions = await readTransactionsFromFile();
+): Promise<{ idl: string }[]> => {
+	const deletedTransactionId: { idl: string }[] = await db
+		.delete(schema.transactions)
+		.where(eq(schema.transactions.id, transactionId))
+		.returning({ idl: schema.transactions.id });
 
-		const index = existingTransactions.findIndex(
-			transaction => transaction.id === transactionId,
-		);
-
-		if (index !== -1) {
-			existingTransactions.splice(index, 1);
-		}
-		const updatedTransactions = [...existingTransactions];
-		await writeTransactionsToFile(updatedTransactions);
-
-		return true;
-	} catch (err: unknown) {
-		return {
-			message: getErrorMessage(err),
-		};
-	}
+	return deletedTransactionId;
 };

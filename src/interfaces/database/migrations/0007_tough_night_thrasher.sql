@@ -1,0 +1,1 @@
+ALTER TABLE "assets" ADD CONSTRAINT "assets_symbol_unique" UNIQUE("symbol");

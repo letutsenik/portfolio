@@ -35,7 +35,7 @@ export const assets = pgTable('assets', {
 		.default(sql`gen_random_uuid()`)
 		.primaryKey(),
 	name: text('name').notNull(),
-	symbol: varchar('symbol', { length: 8 }).notNull(),
+	symbol: varchar('symbol', { length: 8 }).notNull().unique(),
 });
 
 export const transactions = pgTable('transactions', {
@@ -46,4 +46,10 @@ export const transactions = pgTable('transactions', {
 	quantity: doublePrecision('quantity').default(0.0).notNull(),
 	price: decimal('price', { precision: 10, scale: 2 }).notNull(),
 	date: timestamp('date').defaultNow(),
+	userId: uuid('user_id')
+		.references(() => users.id)
+		.notNull(),
+	portfolioId: uuid('portfolio_id')
+		.references(() => portfolios.id)
+		.notNull(),
 });

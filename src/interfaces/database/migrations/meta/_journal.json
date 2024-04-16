@@ -43,6 +43,20 @@
 			"when": 1713197576740,
 			"tag": "0005_warm_karma",
 			"breakpoints": true
+		},
+		{
+			"idx": 6,
+			"version": "5",
+			"when": 1713251275704,
+			"tag": "0006_fixed_firebird",
+			"breakpoints": true
+		},
+		{
+			"idx": 7,
+			"version": "5",
+			"when": 1713255122038,
+			"tag": "0007_tough_night_thrasher",
+			"breakpoints": true
 		}
 	]
 }
