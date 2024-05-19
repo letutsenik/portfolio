@@ -4,10 +4,11 @@ import { TransactionRepository } from 'src/domain/repositories';
 export const createTransaction = async () => {
 	const transactionInput: TransactionDb = {
 		type: 'BUY',
-		quantity: 1,
-		price: '63025.5',
-		userId: '623333a0-0d06-4877-938f-26dd39f9a855',
-		portfolioId: '89fc7ed6-84f5-48a7-bf0a-a6fc586a6510',
+		quantity: 0.08,
+		price: '12500.5',
+		userId: 'c27baee7-e6d2-48a6-8ae9-a5b9ed1a6171',
+		portfolioId: 'eebc558e-5ef4-4cdb-a668-bca98455ece1',
+		assetId: 'BTC',
 	};
 	const newTransaction =
 		await TransactionRepository.createTransaction(transactionInput);

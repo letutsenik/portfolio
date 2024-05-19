@@ -3,8 +3,8 @@ export interface Transaction {
 	type: 'BUY' | 'SELL';
 	quantity: number;
 	pricePerCoin: number;
-	timestamp: Date | string;
-	coinId: string;
-	assetId: string;
+	date: Date | string;
+	userId: string;
 	portfolioId: string;
+	assetId: string;
 }

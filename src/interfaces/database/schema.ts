@@ -52,4 +52,7 @@ export const transactions = pgTable('transactions', {
 	portfolioId: uuid('portfolio_id')
 		.references(() => portfolios.id)
 		.notNull(),
+	assetId: varchar('asset_id')
+		.references(() => assets.symbol)
+		.notNull(),
 });

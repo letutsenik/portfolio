@@ -57,6 +57,13 @@
 			"when": 1713255122038,
 			"tag": "0007_tough_night_thrasher",
 			"breakpoints": true
+		},
+		{
+			"idx": 8,
+			"version": "5",
+			"when": 1713341459568,
+			"tag": "0008_whole_luke_cage",
+			"breakpoints": true
 		}
 	]
 }
